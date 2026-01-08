@@ -1,0 +1,1723 @@
+```html
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teacher Karina Medina — English Skills (Pre-K → 5°)</title>
+
+  <style>
+    /* ===== Fondo bonito ===== */
+    body{
+      font-family: system-ui, Arial;
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #c7eaff, #e6d9ff, #fff1c1);
+    }
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.85) 0 22%, transparent 23%),
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,.75) 0 18%, transparent 19%),
+        radial-gradient(circle at 70% 20%, rgba(255,255,255,.80) 0 24%, transparent 25%),
+        radial-gradient(circle at 85% 55%, rgba(255,255,255,.60) 0 16%, transparent 17%),
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,.55) 0 20%, transparent 21%),
+        radial-gradient(circle at 60% 78%, rgba(255,255,255,.60) 0 14%, transparent 15%);
+      opacity: .35;
+      z-index: -1;
+    }
+
+    header{
+      padding: 16px;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(6px);
+    }
+    main{ padding: 16px; max-width: 1200px; margin: 0 auto; }
+
+    .grid{ display:grid; gap:12px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+    .row{ display:flex; gap:10px; flex-wrap: wrap; align-items:center; }
+
+    .card{
+      background: rgba(255,255,255,0.95);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.12);
+    }
+
+    .pill{
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.95);
+      border: 1px solid rgba(0,0,0,.10);
+      cursor: pointer;
+      user-select:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      max-width: 100%;
+    }
+    .pill.active{ background:#2563eb; color:#fff; border-color:#2563eb; }
+
+    button{
+      width: 100%;
+      padding: 12px;
+      border: 0;
+      border-radius: 16px;
+      font-size: 16px;
+      cursor:pointer;
+      box-shadow: 0 6px 14px rgba(0,0,0,.10);
+      background: #ffffff;
+    }
+    button.primary{ background:#2563eb; color:#fff; box-shadow: 0 10px 18px rgba(37,99,235,.25); }
+    button.soft{ background:#e8f0ff; box-shadow:none; }
+
+    .small{ font-size: 13px; color:#444; }
+    .good{ color:#0a7a2f; font-weight:700; }
+    .bad{ color:#b42318; font-weight:700; }
+
+    .tag{
+      display:inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(37,99,235,.12);
+      color:#1f4bd8;
+      font-size: 12px;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    /* ===== Opciones con imagen ===== */
+    .optBtn{
+      text-align: left;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding: 12px 14px;
+    }
+    .optIcon{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(37,99,235,.10);
+      flex: 0 0 auto;
+      overflow:hidden;
+    }
+    .optIcon svg{ width: 36px; height: 36px; display:block; }
+    .optText{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width: 0;
+    }
+    .optLabel{ font-weight: 900; word-break: break-word; }
+    .optSub{ font-size: 12px; color:#555; }
+
+    .titleLine{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .brandBadge{
+      width: 36px; height: 36px;
+      border-radius: 14px;
+      background: rgba(37,99,235,.14);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 18px;
+    }
+
+    .divider{
+      height:1px; background: rgba(0,0,0,.08);
+      margin: 10px 0;
+    }
+
+    .testBox{
+      border: 1px dashed rgba(37,99,235,.35);
+      border-radius: 16px;
+      padding: 12px;
+      background: rgba(37,99,235,.05);
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="row" style="justify-content:space-between;">
+    <div class="brand">
+      <div class="brandBadge">🍎</div>
+      <div>
+        <div style="font-weight:900;">Teacher Karina Medina</div>
+        <div class="small">English Skills (Pre-K → 5°)</div>
+      </div>
+    </div>
+    <span class="small" id="status">Choose grade + topic + skill</span>
+  </div>
+</header>
+
+<main>
+  <section class="card">
+    <h2 style="margin:0 0 10px 0;">1) Choose your grade</h2>
+    <div class="row" id="gradeRow"></div>
+  </section>
+
+  <section class="card" style="margin-top:12px;">
+    <div class="titleLine">
+      <h2 style="margin:0;">2) Choose your topic <span class="tag" id="topicHint">Topics</span></h2>
+      <div class="row" style="gap:8px;">
+        <div class="pill" id="testBtn">📝 Start Test</div>
+        <div class="pill" id="exitTestBtn" style="display:none;">⬅️ Exit Test</div>
+      </div>
+    </div>
+    <div class="row" id="topicRow" style="margin-top:10px;"></div>
+    <div class="small" id="topicHelp" style="margin-top:10px;"></div>
+  </section>
+
+  <section class="card" style="margin-top:12px;">
+    <h2 style="margin:0 0 10px 0;">3) Choose a skill</h2>
+    <div class="grid" id="skillsGrid"></div>
+  </section>
+
+  <section class="card" style="margin-top:12px;">
+    <div class="row" style="justify-content:space-between; gap:12px;">
+      <h2 style="margin:0;" id="panelTitle">4) Activity</h2>
+      <div class="row" style="gap:8px;">
+        <div class="pill" id="prevBtn">⬅️ Prev</div>
+        <div class="pill" id="nextBtn">Next ➡️</div>
+      </div>
+    </div>
+    <div id="activityArea" class="small" style="margin-top:10px;">
+      Pick a grade + topic + skill to start.
+    </div>
+  </section>
+</main>
+
+<script>
+/* =========================================================
+   0) Helpers
+========================================================= */
+const shuffle = (arr) => {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+};
+
+const unique3 = (pool, correct) => {
+  const others = pool.filter(x => x !== correct);
+  const picks = shuffle(others).slice(0, 2);
+  return shuffle([correct, ...picks]);
+};
+
+const clampMin = (n, min) => Math.max(min, n);
+
+/* =========================================================
+   1) Offline “images”: emojis + SVG (colors/shapes/numbers)
+========================================================= */
+const colorHex = {
+  "red":"#ef4444","blue":"#3b82f6","yellow":"#facc15","green":"#22c55e",
+  "pink":"#ec4899","purple":"#a855f7","orange":"#f97316","black":"#111827",
+  "white":"#ffffff","brown":"#8b5a2b","gray":"#6b7280","grey":"#6b7280"
+};
+
+function svgCircle(fill){
+  return `
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <circle cx="32" cy="32" r="22" fill="${fill}" stroke="rgba(0,0,0,.25)" stroke-width="3"></circle>
+    </svg>`;
+}
+function svgShape(type){
+  const stroke = "rgba(0,0,0,.25)";
+  const fill = "rgba(37,99,235,.22)";
+  if(type==="circle") return svgCircle("rgba(37,99,235,.22)");
+  if(type==="square") return `<svg viewBox="0 0 64 64"><rect x="16" y="16" width="32" height="32" rx="6" fill="${fill}" stroke="${stroke}" stroke-width="3"/></svg>`;
+  if(type==="rectangle") return `<svg viewBox="0 0 64 64"><rect x="12" y="20" width="40" height="24" rx="6" fill="${fill}" stroke="${stroke}" stroke-width="3"/></svg>`;
+  if(type==="triangle") return `<svg viewBox="0 0 64 64"><path d="M32 14 L52 50 H12 Z" fill="${fill}" stroke="${stroke}" stroke-width="3"/></svg>`;
+  if(type==="oval") return `<svg viewBox="0 0 64 64"><ellipse cx="32" cy="32" rx="22" ry="14" fill="${fill}" stroke="${stroke}" stroke-width="3"/></svg>`;
+  if(type==="diamond") return `<svg viewBox="0 0 64 64"><path d="M32 12 L52 32 L32 52 L12 32 Z" fill="${fill}" stroke="${stroke}" stroke-width="3"/></svg>`;
+  return null;
+}
+
+const emojiMap = {
+  // greetings
+  "hello":"👋","hi":"👋","good morning":"🌞","good afternoon":"🌤️","goodbye":"👋",
+  "thank you":"🙏","please":"🥺","sorry":"😅","how are you":"🙂","i am fine":"😊",
+  "excuse me":"🙋","i'm sorry":"😔","pardon me":"🙏",
+
+  // body
+  "head":"🧑‍🦱","shoulders":"🧍","knees":"🦵","toes":"🦶","eyes":"👀","ears":"👂","nose":"👃","mouth":"👄",
+  "hand":"✋","foot":"🦶","arm":"💪","leg":"🦵",
+
+  // animals
+  "cow":"🐮","pig":"🐷","dog":"🐶","cat":"🐱","horse":"🐴","duck":"🦆","sheep":"🐑","hen":"🐔","goat":"🐐","rabbit":"🐰",
+  "fish":"🐟","bird":"🐦","lion":"🦁","tiger":"🐯","elephant":"🐘","monkey":"🐵","bear":"🐻",
+
+  // family
+  "mother":"👩","father":"👨","sister":"👧","brother":"👦","grandmother":"👵","grandfather":"👴","aunt":"👩‍🦰","uncle":"👨‍🦱","cousin":"🧒","baby":"👶",
+
+  // school parts
+  "classroom":"🏫","library":"📚","playground":"🛝","cafeteria":"🍽️","bathroom":"🚻","office":"🏢","gym":"🏟️","hallway":"🚪",
+  "music room":"🎵","art room":"🎨","laboratory":"🧪",
+
+  // classroom objects
+  "pencil":"✏️","pen":"🖊️","eraser":"🧽","ruler":"📏","book":"📘","notebook":"📓","crayon":"🖍️","marker":"🖊️",
+  "backpack":"🎒","scissors":"✂️","glue":"🧴","paper":"📄","desk":"🪑","chair":"🪑",
+
+  // sports
+  "soccer":"⚽","basketball":"🏀","baseball":"⚾","tennis":"🎾","swimming":"🏊","running":"🏃","volleyball":"🏐","cycling":"🚴",
+
+  // food
+  "pizza":"🍕","sandwich":"🥪","apple":"🍎","banana":"🍌","milk":"🥛","water":"💧","rice":"🍚","chicken":"🍗","salad":"🥗","ice cream":"🍦",
+
+  // adjectives (people)
+  "tall":"📏","short":"📏","happy":"😊","sad":"😢","kind":"🤝","funny":"😂","strong":"💪","smart":"🧠","friendly":"🙂","shy":"🙈",
+
+  // illnesses/symptoms
+  "cold":"🤧","fever":"🤒","headache":"🤕","stomachache":"🤢","cough":"😷","sore throat":"😷","runny nose":"🤧",
+
+  // months/days/time
+  "monday":"📅","tuesday":"📅","wednesday":"📅","thursday":"📅","friday":"📅","saturday":"📅","sunday":"📅",
+  "january":"🗓️","february":"🗓️","march":"🗓️","april":"🗓️","may":"🗓️","june":"🗓️","july":"🗓️","august":"🗓️",
+  "september":"🗓️","october":"🗓️","november":"🗓️","december":"🗓️",
+
+  // subjects
+  "math":"➗","science":"🔬","english":"📘","art":"🎨","music":"🎵","pe":"🏃","history":"📜","geography":"🗺️","spanish":"📗",
+
+  // environment / city
+  "recycle":"♻️","trash":"🗑️","tree":"🌳","river":"🏞️","pollution":"🏭","save water":"🚰",
+  "park":"🏞️","hospital":"🏥","school":"🏫","library":"📚","supermarket":"🛒","police station":"👮","fire station":"🚒","museum":"🏛️","street":"🛣️","bank":"🏦"
+};
+
+const numberWordsBasic = {
+  "one":"1","two":"2","three":"3","four":"5"?null:"4", // safeguard is below; we won’t use this oddity; leaving map clean below
+};
+const numberToDigit = {
+  "one":"1","two":"2","three":"3","four":"4","five":"5","six":"6","seven":"7","eight":"8","nine":"9","ten":"10",
+  "eleven":"11","twelve":"12","thirteen":"13","fourteen":"14","fifteen":"15","sixteen":"16","seventeen":"17","eighteen":"18","nineteen":"19","twenty":"20",
+  "thirty":"30","forty":"40","fifty":"50","sixty":"60","seventy":"70","eighty":"80","ninety":"90","hundred":"100"
+};
+
+function normalizeKey(s){ return String(s || "").trim().toLowerCase(); }
+
+function getIconHTML(value, topicKey){
+  const k = normalizeKey(value);
+
+  // Colors: circle with real color
+  if (topicKey === "colors" && colorHex[k]) return svgCircle(colorHex[k]);
+
+  // Shapes: SVG for shapes
+  if (topicKey === "shapes"){
+    const svg = svgShape(k);
+    if (svg) return svg;
+    if (k === "star") return `<span style="font-size:24px;">⭐</span>`;
+    if (k === "heart") return `<span style="font-size:24px;">❤️</span>`;
+    return `<span style="font-size:24px;">🔺</span>`;
+  }
+
+  // Numbers: digit badge
+  if (topicKey === "numbers" || topicKey === "numbers50" || topicKey === "numbers100"){
+    const digit = numberToDigit[k] || (String(k).match(/^\d+$/) ? k : null);
+    if (digit){
+      return `
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="10" y="14" width="44" height="36" rx="12" fill="rgba(37,99,235,.18)" stroke="rgba(0,0,0,.18)" stroke-width="3"></rect>
+          <text x="32" y="40" text-anchor="middle" font-size="22" font-weight="900" fill="rgba(17,24,39,.90)">${digit}</text>
+        </svg>`;
+    }
+    return `<span style="font-size:24px;">🔢</span>`;
+  }
+
+  // Time: clock icon
+  if (topicKey === "oclock" || topicKey === "time"){
+    return `<span style="font-size:24px;">🕒</span>`;
+  }
+
+  if (emojiMap[k]) return `<span style="font-size:24px;">${emojiMap[k]}</span>`;
+  return `<span style="font-size:24px;">🎯</span>`;
+}
+
+function renderOptionButton(container, {label, sublabel, value, onPick, topicKey}) {
+  const b = document.createElement("button");
+  b.className = "optBtn";
+  b.type = "button";
+  b.innerHTML = `
+    <span class="optIcon">${getIconHTML(value, topicKey)}</span>
+    <span class="optText">
+      <span class="optLabel">${label}</span>
+      ${sublabel ? `<span class="optSub">${sublabel}</span>` : ``}
+    </span>
+  `;
+  b.onclick = onPick;
+  container.appendChild(b);
+}
+
+/* =========================================================
+   2) Voice (kid-like attempt)
+========================================================= */
+let cachedVoices = [];
+function loadVoices(){ cachedVoices = speechSynthesis.getVoices() || []; }
+if (typeof speechSynthesis !== "undefined") {
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+function speak(text){
+  if (typeof SpeechSynthesisUtterance === "undefined") return;
+  const u = new SpeechSynthesisUtterance(text);
+  const voices = cachedVoices;
+  const v =
+    voices.find(v => v.lang?.toLowerCase().startsWith("en") && /child|kid|girl|female|samantha|victoria|serena/i.test(v.name)) ||
+    voices.find(v => v.lang?.toLowerCase().startsWith("en"));
+  if (v) u.voice = v;
+  u.lang = "en-US";
+  u.pitch = 1.4;
+  u.rate  = 0.85;
+  u.volume = 1;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+/* =========================================================
+   3) Activity builders
+========================================================= */
+function buildTopicPackFromVocab({title, vocab, sentenceTemplates, minPerSkill=10}) {
+  const pool = vocab;
+  const N = clampMin(minPerSkill, minPerSkill);
+  const listening = [];
+  const speaking  = [];
+  const reading   = [];
+  const writing   = [];
+
+  for (let i = 0; i < N; i++) {
+    const w = pool[i % pool.length];
+    listening.push({
+      type:"mcq-audio",
+      title,
+      audioText: w,
+      question: "What do you hear?",
+      options: unique3(pool, w),
+      answer: w
+    });
+  }
+
+  for (let i = 0; i < N; i++) {
+    const w = pool[i % pool.length];
+    speaking.push({
+      type:"repeat",
+      title,
+      prompt: "Listen and repeat:",
+      word: w
+    });
+  }
+
+  for (let i = 0; i < N; i++) {
+    const w = pool[i % pool.length];
+    const templateFn = sentenceTemplates[i % sentenceTemplates.length];
+    const sentence = templateFn(w);
+    reading.push({
+      type:"mcq",
+      title,
+      question: sentence,
+      options: unique3(pool, w),
+      answer: w
+    });
+  }
+
+  for (let i = 0; i < N; i++) {
+    const w = pool[i % pool.length];
+    if (i % 2 === 0) {
+      const templateFn = sentenceTemplates[i % sentenceTemplates.length];
+      const sentence = templateFn("____");
+      writing.push({
+        type:"fill",
+        title,
+        sentence,
+        options: unique3(pool, w),
+        answer: w
+      });
+    } else {
+      const upper = String(w).toUpperCase();
+      const pieces = shuffle(upper.split(""));
+      writing.push({
+        type:"unscramble",
+        title,
+        hint: upper,
+        pieces,
+        answer: upper
+      });
+    }
+  }
+
+  return { listening, speaking, reading, writing };
+}
+
+function buildNumbersDigitsPack({title, from, to, minPerSkill}) {
+  const vocab = [];
+  for (let i = from; i <= to; i++) vocab.push(String(i));
+  const sentenceTemplates = [
+    (w)=>`Number: ${w}.`,
+    (w)=>`I can count: ${w}.`,
+    (w)=>`Write: ${w}.`,
+    (w)=>`Say: ${w}.`
+  ];
+  return buildTopicPackFromVocab({ title, vocab, sentenceTemplates, minPerSkill });
+}
+
+function buildThereIsArePack({minPerSkill}) {
+  const nounsSing = ["a book","a pencil","a chair","a table","a ruler","a bag","a pen","a crayon","a notebook","a marker","a desk","a door"];
+  const nounsPlur = ["two books","three pencils","four chairs","five tables","six rulers","two bags","three pens","four crayons","five notebooks","six markers","two desks","three doors"];
+
+  const N = clampMin(minPerSkill, minPerSkill);
+  const listening = [];
+  const speaking  = [];
+  const reading   = [];
+  const writing   = [];
+
+  for (let i = 0; i < N; i++) {
+    const isPlural = i % 2 === 1;
+    const phrase = isPlural ? `There are ${nounsPlur[i % nounsPlur.length]}.` : `There is ${nounsSing[i % nounsSing.length]}.`;
+    const answer = isPlural ? "There are" : "There is";
+    listening.push({
+      type:"mcq-audio",
+      title:"There is / There are",
+      audioText: phrase,
+      question:"Choose the correct start:",
+      options: ["There is","There are","This is"],
+      answer
+    });
+  }
+
+  for (let i = 0; i < N; i++) {
+    const isPlural = i % 2 === 1;
+    const phrase = isPlural ? `There are ${nounsPlur[i % nounsPlur.length]}.` : `There is ${nounsSing[i % nounsSing.length]}.`;
+    speaking.push({ type:"repeat", title:"There is / There are", prompt:"Repeat:", word: phrase });
+  }
+
+  for (let i = 0; i < N; i++) {
+    const isPlural = i % 2 === 1;
+    const q = isPlural ? `There ____ ${nounsPlur[i % nounsPlur.length]}.` : `There ____ ${nounsSing[i % nounsSing.length]}.`;
+    const ans = isPlural ? "are" : "is";
+    reading.push({ type:"mcq", title:"There is / There are", question:q, options:["is","are","am"], answer: ans });
+    writing.push({ type:"fill", title:"There is / There are", sentence:q, options:["is","are","am"], answer: ans });
+  }
+
+  return { listening, speaking, reading, writing };
+}
+
+function buildCanPack({minPerSkill}) {
+  const verbs = ["swim","run","jump","read","write","sing","dance","draw","play soccer","ride a bike","cook","speak English"];
+  const N = clampMin(minPerSkill, minPerSkill);
+  const listening = [];
+  const speaking  = [];
+  const reading   = [];
+  const writing   = [];
+
+  for (let i = 0; i < N; i++) {
+    const v = verbs[i % verbs.length];
+    const phrase = (i % 2 === 0) ? `I can ${v}.` : `I can't ${v}.`;
+    const ans = (i % 2 === 0) ? "can" : "can't";
+    listening.push({ type:"mcq-audio", title:"Verb CAN", audioText: phrase, question:"Choose:", options:["can","can't","am"], answer: ans });
+  }
+  for (let i = 0; i < N; i++) {
+    const v = verbs[i % verbs.length];
+    const phrase = `I can ${v}.`;
+    speaking.push({ type:"repeat", title:"Verb CAN", prompt:"Repeat:", word: phrase });
+  }
+  for (let i = 0; i < N; i++) {
+    const v = verbs[i % verbs.length];
+    reading.push({ type:"mcq", title:"Verb CAN", question:`I ____ ${v}.`, options:["can","can't","am"], answer:"can" });
+  }
+  for (let i = 0; i < N; i++) {
+    const v = verbs[i % verbs.length];
+    writing.push({ type:"fill", title:"Verb CAN", sentence:`I ____ ${v}.`, options:["can","can't","am"], answer:"can" });
+  }
+  return { listening, speaking, reading, writing };
+}
+
+function buildShouldPack({minPerSkill}) {
+  const good = ["drink water","sleep early","eat healthy food","wash your hands","study every day","rest","brush your teeth","visit a doctor"];
+  const bad  = ["eat too much candy","stay up late","skip breakfast","play all night","shout in class","run in the hallway"];
+  const N = clampMin(minPerSkill, minPerSkill);
+
+  const listening=[], speaking=[], reading=[], writing=[];
+  for (let i = 0; i < N; i++) {
+    const isBad = i % 2 === 1;
+    const action = isBad ? bad[i % bad.length] : good[i % good.length];
+    const phrase = isBad ? `You shouldn't ${action}.` : `You should ${action}.`;
+    const ans = isBad ? "shouldn't" : "should";
+    listening.push({ type:"mcq-audio", title:"Should / Shouldn't", audioText: phrase, question:"Choose:", options:["should","shouldn't","can"], answer: ans });
+  }
+  for (let i = 0; i < N; i++) {
+    const action = good[i % good.length];
+    speaking.push({ type:"repeat", title:"Should / Shouldn't", prompt:"Repeat:", word: `You should ${action}.` });
+  }
+  for (let i = 0; i < N; i++) {
+    const isBad = i % 2 === 1;
+    const action = isBad ? bad[i % bad.length] : good[i % good.length];
+    const ans = isBad ? "shouldn't" : "should";
+    reading.push({ type:"mcq", title:"Should / Shouldn't", question:`You ____ ${action}.`, options:["should","shouldn't","can't"], answer: ans });
+    writing.push({ type:"fill", title:"Should / Shouldn't", sentence:`You ____ ${action}.`, options:["should","shouldn't","can't"], answer: ans });
+  }
+  return { listening, speaking, reading, writing };
+}
+
+function buildOclockPack({minPerSkill}) {
+  const hours = [1,2,3,4,5,6,7,8,9,10,11,12];
+  const N = clampMin(minPerSkill, minPerSkill);
+  const listening=[], speaking=[], reading=[], writing=[];
+  for (let i = 0; i < N; i++) {
+    const h = hours[i % hours.length];
+    const phrase = `It's ${h} o'clock.`;
+    listening.push({ type:"mcq-audio", title:"O'clock", audioText: phrase, question:"What time is it?", options:[`${h} o'clock`, `${((h%12)+1)} o'clock`, `${((h+1)%12||12)} o'clock`], answer:`${h} o'clock` });
+    speaking.push({ type:"repeat", title:"O'clock", prompt:"Repeat:", word: phrase });
+    reading.push({ type:"mcq", title:"O'clock", question:`It's ____ o'clock.`, options:[String(h), String(((h%12)+1)), String(((h+1)%12||12))], answer:String(h) });
+    writing.push({ type:"fill", title:"O'clock", sentence:`It's ____ o'clock.`, options:[String(h), String(((h%12)+1)), String(((h+1)%12||12))], answer:String(h) });
+  }
+  return { listening, speaking, reading, writing };
+}
+
+function buildTimePackAdvanced({minPerSkill}) {
+  // grade5 time (half past / quarter past / quarter to)
+  const times = [
+    {say:"It's half past 1.", ans:"half past"},
+    {say:"It's half past 6.", ans:"half past"},
+    {say:"It's quarter past 3.", ans:"quarter past"},
+    {say:"It's quarter past 8.", ans:"quarter past"},
+    {say:"It's quarter to 5.", ans:"quarter to"},
+    {say:"It's quarter to 10.", ans:"quarter to"},
+  ];
+  const N = clampMin(minPerSkill, minPerSkill);
+  const listening=[], speaking=[], reading=[], writing=[];
+  for (let i = 0; i < N; i++) {
+    const t = times[i % times.length];
+    listening.push({ type:"mcq-audio", title:"Time", audioText: t.say, question:"Choose the expression:", options:["half past","quarter past","quarter to"], answer: t.ans });
+    speaking.push({ type:"repeat", title:"Time", prompt:"Repeat:", word: t.say });
+    reading.push({ type:"mcq", title:"Time", question:`${t.say} Choose:`, options:["half past","quarter past","quarter to"], answer: t.ans });
+    writing.push({ type:"fill", title:"Time", sentence:`${t.say} It is ____ .`, options:["half past","quarter past","quarter to"], answer: t.ans });
+  }
+  return { listening, speaking, reading, writing };
+}
+
+function buildIllnessPack({minPerSkill}) {
+  const vocab = ["cold","fever","headache","stomachache","cough","sore throat","runny nose","tired"];
+  const templates = [
+    (w)=>`I have a ${w}.`,
+    (w)=>`He has a ${w}.`,
+    (w)=>`Symptoms: ${w}.`,
+    (w)=>`I feel ${w}.`
+  ];
+  return buildTopicPackFromVocab({ title:"Illnesses & Symptoms", vocab, sentenceTemplates: templates, minPerSkill });
+}
+
+function buildSchoolSubjectsPack({minPerSkill}) {
+  const vocab = ["math","science","english","art","music","pe","history","geography","spanish"];
+  const templates = [
+    (w)=>`My favorite subject is ${w}.`,
+    (w)=>`I have ${w} today.`,
+    (w)=>`We study ${w}.`
+  ];
+  return buildTopicPackFromVocab({ title:"School Subjects", vocab, sentenceTemplates: templates, minPerSkill });
+}
+
+function buildPronounsPack({minPerSkill}) {
+  const vocab = ["I","you","he","she","it","we","they"];
+  const templates = [
+    (w)=>`${w} am happy.`.replace("he am","he is").replace("she am","she is").replace("it am","it is").replace("you am","you are").replace("we am","we are").replace("they am","they are"),
+    (w)=>`${w} like soccer.`.replace("he like","he likes").replace("she like","she likes").replace("it like","it likes"),
+    (w)=>`${w} are my friend.`.replace("I are","I am").replace("he are","he is").replace("she are","she is").replace("it are","it is")
+  ];
+  return buildTopicPackFromVocab({ title:"Personal Pronouns", vocab, sentenceTemplates: templates, minPerSkill });
+}
+
+function buildPresentSimplePack({minPerSkill}) {
+  const subjects = ["I","You","He","She","We","They"];
+  const verbs = ["play","read","watch","like","eat","go"];
+  const N = clampMin(minPerSkill, minPerSkill);
+  const listening=[], speaking=[], reading=[], writing=[];
+  for (let i = 0; i < N; i++) {
+    const s = subjects[i % subjects.length];
+    const v = verbs[i % verbs.length];
+    const v3 = (s === "He" || s === "She") ? (v === "go" ? "goes" : v + "s") : v;
+    const phrase = `${s} ${v3}.`;
+    listening.push({ type:"mcq-audio", title:"Present Simple", audioText: phrase, question:"Choose the correct verb:", options:[v, v3, "am"], answer: v3 });
+    speaking.push({ type:"repeat", title:"Present Simple", prompt:"Repeat:", word: phrase });
+    reading.push({ type:"mcq", title:"Present Simple", question:`${s} ____ .`, options:[v, v3, "can"], answer: v3 });
+    writing.push({ type:"fill", title:"Present Simple", sentence:`${s} ____ .`, options:[v, v3, "can"], answer: v3 });
+  }
+  return { listening, speaking, reading, writing };
+}
+
+function buildComparisonsPack({minPerSkill}) {
+  const pairs = [
+    ["big","bigger"],["small","smaller"],["tall","taller"],["short","shorter"],["fast","faster"],["slow","slower"],["happy","happier"],["strong","stronger"]
+  ];
+  const N = clampMin(minPerSkill, minPerSkill);
+  const listening=[], speaking=[], reading=[], writing=[];
+  for (let i = 0; i < N; i++) {
+    const [adj, comp] = pairs[i % pairs.length];
+    const phrase = `A lion is ${comp} than a cat.`;
+    listening.push({ type:"mcq-audio", title:"Comparisons", audioText: phrase, question:"Choose the comparative:", options:[adj, comp, "most " + adj], answer: comp });
+    speaking.push({ type:"repeat", title:"Comparisons", prompt:"Repeat:", word: phrase });
+    reading.push({ type:"mcq", title:"Comparisons", question:`Choose: ${adj} / ${comp}`, options:[adj, comp, "more " + adj], answer: comp });
+    writing.push({ type:"fill", title:"Comparisons", sentence:`A lion is ____ than a cat.`, options:[adj, comp, "more " + adj], answer: comp });
+  }
+  return { listening, speaking, reading, writing };
+}
+
+function buildFrequencyAdverbsPack({minPerSkill}) {
+  const vocab = ["always","usually","sometimes","rarely","never"];
+  const templates = [
+    (w)=>`I ${w} do homework.`,
+    (w)=>`She ${w} eats breakfast.`,
+    (w)=>`We ${w} play outside.`
+  ];
+  return buildTopicPackFromVocab({ title:"Frequency Adverbs", vocab, sentenceTemplates: templates, minPerSkill });
+}
+
+function buildApologiesPack({minPerSkill}) {
+  const vocab = ["I'm sorry","Sorry","Excuse me","Pardon me","My mistake","I apologize"];
+  const templates = [
+    (w)=>`${w}.`,
+    (w)=>`Say: ${w}.`,
+    (w)=>`When you bump someone: ${w}.`
+  ];
+  return buildTopicPackFromVocab({ title:"Apologies", vocab, sentenceTemplates: templates, minPerSkill });
+}
+
+function buildEnvironmentPack({minPerSkill}) {
+  const vocab = ["recycle","trash","tree","river","pollution","save water","save energy","plant a tree","clean the park","use less plastic"];
+  const templates = [
+    (w)=>`We should ${w}.`,
+    (w)=>`I can ${w}.`,
+    (w)=>`Let's ${w}!`
+  ];
+  return buildTopicPackFromVocab({ title:"Environment", vocab, sentenceTemplates: templates, minPerSkill });
+}
+
+function buildSynAntPack({minPerSkill}) {
+  const pairs = [
+    ["big","small"],["happy","sad"],["hot","cold"],["fast","slow"],["clean","dirty"],["up","down"],["open","close"],["tall","short"]
+  ];
+  const N = clampMin(minPerSkill, minPerSkill);
+  const listening=[], speaking=[], reading=[], writing=[];
+  for (let i = 0; i < N; i++) {
+    const [a,b] = pairs[i % pairs.length];
+    const askSyn = (i % 2 === 0);
+    const q = askSyn ? `Choose the opposite of "${a}".` : `Choose the opposite of "${b}".`;
+    const ans = askSyn ? b : a;
+    const options = shuffle([a,b,"funny"]).slice(0,3);
+    listening.push({ type:"mcq-audio", title:"Synonyms & Antonyms", audioText: q, question:"Pick the answer:", options, answer: ans });
+    speaking.push({ type:"repeat", title:"Synonyms & Antonyms", prompt:"Repeat:", word: `${a} - ${b}` });
+    reading.push({ type:"mcq", title:"Synonyms & Antonyms", question: q, options, answer: ans });
+    writing.push({ type:"fill", title:"Synonyms & Antonyms", sentence: q.replace("Choose","Answer"), options, answer: ans });
+  }
+  return { listening, speaking, reading, writing };
+}
+
+function buildComparativesSuperlativesPack({minPerSkill}) {
+  const triples = [
+    ["tall","taller","the tallest"],
+    ["big","bigger","the biggest"],
+    ["small","smaller","the smallest"],
+    ["fast","faster","the fastest"],
+    ["happy","happier","the happiest"]
+  ];
+  const N = clampMin(minPerSkill, minPerSkill);
+  const listening=[], speaking=[], reading=[], writing=[];
+  for (let i = 0; i < N; i++) {
+    const [adj, comp, sup] = triples[i % triples.length];
+    const chooseSup = (i % 2 === 1);
+    const phrase = chooseSup ? `Of all, it is ${sup}.` : `A is ${comp} than B.`;
+    const ans = chooseSup ? sup : comp;
+    listening.push({ type:"mcq-audio", title:"Comparatives & Superlatives", audioText: phrase, question:"Choose:", options:[adj, comp, sup], answer: ans });
+    speaking.push({ type:"repeat", title:"Comparatives & Superlatives", prompt:"Repeat:", word: phrase });
+    reading.push({ type:"mcq", title:"Comparatives & Superlatives", question:`Choose the correct form of "${adj}":`, options:[adj, comp, sup], answer: ans });
+    writing.push({ type:"fill", title:"Comparatives & Superlatives", sentence:`Choose form of "${adj}": ____`, options:[adj, comp, sup], answer: ans });
+  }
+  return { listening, speaking, reading, writing };
+}
+
+function buildCityPartsPack({minPerSkill}) {
+  const vocab = ["park","hospital","school","library","supermarket","police station","fire station","museum","street","bank"];
+  const templates = [
+    (w)=>`This is the ${w}.`,
+    (w)=>`I go to the ${w}.`,
+    (w)=>`Where is the ${w}?`
+  ];
+  return buildTopicPackFromVocab({ title:"Parts of the City", vocab, sentenceTemplates: templates, minPerSkill });
+}
+
+function buildDailyRoutinesHobbiesPack({minPerSkill}) {
+  const vocab = ["wake up","brush my teeth","have breakfast","go to school","do homework","play soccer","read a book","watch TV","listen to music","go to bed","draw","ride a bike"];
+  const templates = [
+    (w)=>`I ${w}.`,
+    (w)=>`Every day I ${w}.`,
+    (w)=>`On weekends I ${w}.`
+  ];
+  return buildTopicPackFromVocab({ title:"Daily Routines & Hobbies", vocab, sentenceTemplates: templates, minPerSkill });
+}
+
+/* =========================================================
+   4) Curriculum (topics per grade) + activities with required minimums
+========================================================= */
+const grades = ["Pre-K", "1°", "2°", "3°", "4°", "5°"];
+
+const skills = [
+  { key:"listening", label:"🎧 Listening" },
+  { key:"speaking",  label:"🎤 Speaking"  },
+  { key:"reading",   label:"📖 Reading"   },
+  { key:"writing",   label:"✍️ Writing"   },
+];
+
+const baseTopicsPreK = [
+  { key:"greetings", label:"👋 Greetings" },
+  { key:"body",      label:"🧍 Body Parts" },
+  { key:"shapes",    label:"🔺 Shapes" },
+  { key:"numbers",   label:"🔢 Numbers 1–10" },
+  { key:"animals",   label:"🐮 Animals" },
+  { key:"colors",    label:"🎨 Colors" },
+];
+
+const baseTopics1 = [
+  ...baseTopicsPreK,
+  { key:"family",       label:"👨‍👩‍👧 Family Members" },
+  { key:"numbers50",    label:"🔢 Numbers 1–50" },
+  { key:"schoolparts",  label:"🏫 Parts of the School" },
+  { key:"classobjects", label:"✏️ Classroom Objects" },
+  { key:"thereisare",   label:"📌 There is / There are" },
+];
+
+const baseTopics2 = [
+  ...baseTopics1,
+  { key:"sports",        label:"🏅 Sports" },
+  { key:"food",          label:"🍎 Food" },
+  { key:"can",           label:"✅ Verb CAN" },
+  { key:"numbers100",    label:"🔢 Numbers 1–100" },
+  { key:"peopleadj",     label:"🙂 Adjectives (People)" },
+];
+
+const baseTopics3 = [
+  ...baseTopics2,
+  { key:"illness",     label:"🤒 Illnesses & Symptoms" },
+  { key:"should",      label:"👍 Should / Shouldn't" },
+  { key:"months",      label:"🗓️ Months" },
+  { key:"days",        label:"📅 Days of the Week" },
+  { key:"oclock",      label:"🕒 O'clock" },
+  { key:"subjects",    label:"📚 School Subjects" },
+];
+
+const baseTopics4 = [
+  ...baseTopics3,
+  { key:"pronouns",     label:"👤 Personal Pronouns" },
+  { key:"presentsimple",label:"🧩 Present Simple" },
+  { key:"comparisons",  label:"📈 Simple Comparisons" },
+  { key:"freqadv",      label:"⏱️ Adverbs of Frequency" },
+  { key:"apologies",    label:"🙏 Apologies" },
+  { key:"environment",  label:"🌍 Environment" },
+];
+
+const baseTopics5 = [
+  ...baseTopics4,
+  { key:"time",          label:"🕰️ Time (half/quarter)" },
+  { key:"routines",      label:"🏡 Daily Activities & Hobbies" },
+  { key:"synant",        label:"🔁 Synonyms & Antonyms" },
+  { key:"comp_super",    label:"🏆 Comparatives & Superlatives" },
+  { key:"city",          label:"🏙️ Parts of the City" },
+];
+
+const topicsByGrade = {
+  "Pre-K": baseTopicsPreK,
+  "1°": baseTopics1,
+  "2°": baseTopics2,
+  "3°": baseTopics3,
+  "4°": baseTopics4,
+  "5°": baseTopics5,
+};
+
+// Minimum activities per skill per grade
+const minPerSkillByGrade = {
+  "Pre-K": 6,
+  "1°": 10,
+  "2°": 10,
+  "3°": 15,
+  "4°": 20,
+  "5°": 20,
+};
+
+// Activity catalog builder per grade/topic
+function buildActivitiesForGrade(grade){
+  const minPerSkill = minPerSkillByGrade[grade];
+
+  // Shared vocab topics
+  const greetingsVocab = (grade === "Pre-K")
+    ? ["hello","hi","bye","thank you","please","sorry"]
+    : ["hello","hi","good morning","good afternoon","goodbye","thank you","please","sorry","how are you","I am fine","excuse me","I'm sorry"];
+
+  const bodyVocab = (grade === "Pre-K")
+    ? ["head","shoulders","knees","toes","eyes","ears","nose","mouth","hand","foot"]
+    : ["head","shoulders","knees","toes","eyes","ears","nose","mouth","hand","foot","arm","leg"];
+
+  const shapesVocab = (grade === "Pre-K")
+    ? ["circle","square","rectangle","triangle"]
+    : (grade === "1°" ? ["circle","square","rectangle","triangle","star","heart","oval","diamond"]
+      : ["circle","square","rectangle","triangle","oval","diamond","star","heart"]);
+
+  const animalsVocab = (grade === "Pre-K")
+    ? ["cow","pig","dog","cat","horse","duck","sheep","hen","goat","rabbit"]
+    : ["cow","pig","dog","cat","horse","duck","sheep","hen","goat","rabbit","fish","bird","lion","tiger","elephant","monkey","bear"];
+
+  const colorsVocab = ["red","blue","yellow","green","pink","purple","orange","black","white","brown","gray"];
+
+  const familyVocab = ["mother","father","sister","brother","grandmother","grandfather","aunt","uncle","cousin","baby"];
+
+  const schoolPartsVocab = ["classroom","library","playground","cafeteria","bathroom","office","gym","hallway","music room","art room","laboratory"];
+  const classObjectsVocab = ["pencil","pen","eraser","ruler","book","notebook","crayon","marker","backpack","scissors","glue","paper","desk","chair"];
+
+  const sportsVocab = ["soccer","basketball","baseball","tennis","swimming","running","volleyball","cycling"];
+  const foodVocab = ["pizza","sandwich","apple","banana","milk","water","rice","chicken","salad","ice cream"];
+  const peopleAdjVocab = ["tall","short","happy","sad","kind","funny","strong","smart","friendly","shy"];
+
+  const monthsVocab = ["january","february","march","april","may","june","july","august","september","october","november","december"];
+  const daysVocab = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"];
+
+  const packs = {};
+
+  // Core topics (all grades)
+  packs.greetings = buildTopicPackFromVocab({
+    title:"Greetings",
+    vocab: greetingsVocab,
+    sentenceTemplates:[
+      (w)=>`Say: ${w}.`,
+      (w)=>`Read: ${w}.`,
+      (w)=>`Greeting: ${w}.`,
+      (w)=>`I can say: ${w}.`
+    ],
+    minPerSkill
+  });
+
+  packs.body = buildTopicPackFromVocab({
+    title:"Body Parts",
+    vocab: bodyVocab,
+    sentenceTemplates:[
+      (w)=>`Touch your ${w}.`,
+      (w)=>`This is my ${w}.`,
+      (w)=>`I have ${w}.`,
+      (w)=>`${w}!`
+    ],
+    minPerSkill
+  });
+
+  packs.shapes = buildTopicPackFromVocab({
+    title:"Shapes",
+    vocab: shapesVocab,
+    sentenceTemplates:[
+      (w)=>`This is a ${w}.`,
+      (w)=>`Find a ${w}.`,
+      (w)=>`I see a ${w}.`
+    ],
+    minPerSkill
+  });
+
+  packs.numbers = (grade === "Pre-K")
+    ? buildNumbersDigitsPack({ title:"Numbers 1–10", from:1, to:10, minPerSkill })
+    : buildNumbersDigitsPack({ title:"Numbers 1–10", from:1, to:10, minPerSkill });
+
+  packs.animals = buildTopicPackFromVocab({
+    title:"Animals",
+    vocab: animalsVocab,
+    sentenceTemplates:[
+      (w)=>`It is a ${w}.`,
+      (w)=>`I see a ${w}.`,
+      (w)=>`My favorite is ${w}.`
+    ],
+    minPerSkill
+  });
+
+  packs.colors = buildTopicPackFromVocab({
+    title:"Colors",
+    vocab: colorsVocab,
+    sentenceTemplates:[
+      (w)=>`It is ${w}.`,
+      (w)=>`I like ${w}.`,
+      (w)=>`Color: ${w}.`
+    ],
+    minPerSkill
+  });
+
+  // Grade 1+ topics
+  if (["1°","2°","3°","4°","5°"].includes(grade)){
+    packs.family = buildTopicPackFromVocab({
+      title:"Family Members",
+      vocab: familyVocab,
+      sentenceTemplates:[
+        (w)=>`This is my ${w}.`,
+        (w)=>`I love my ${w}.`,
+        (w)=>`My ${w} is here.`
+      ],
+      minPerSkill
+    });
+
+    packs.numbers50 = buildNumbersDigitsPack({ title:"Numbers 1–50", from:1, to:50, minPerSkill });
+
+    packs.schoolparts = buildTopicPackFromVocab({
+      title:"Parts of the School",
+      vocab: schoolPartsVocab,
+      sentenceTemplates:[
+        (w)=>`This is the ${w}.`,
+        (w)=>`I am in the ${w}.`,
+        (w)=>`Go to the ${w}.`
+      ],
+      minPerSkill
+    });
+
+    packs.classobjects = buildTopicPackFromVocab({
+      title:"Classroom Objects",
+      vocab: classObjectsVocab,
+      sentenceTemplates:[
+        (w)=>`I have a ${w}.`,
+        (w)=>`This is a ${w}.`,
+        (w)=>`Where is my ${w}?`
+      ],
+      minPerSkill
+    });
+
+    packs.thereisare = buildThereIsArePack({ minPerSkill });
+  }
+
+  // Grade 2+ topics
+  if (["2°","3°","4°","5°"].includes(grade)){
+    packs.sports = buildTopicPackFromVocab({
+      title:"Sports",
+      vocab: sportsVocab,
+      sentenceTemplates:[
+        (w)=>`I play ${w}.`,
+        (w)=>`Do you like ${w}?`,
+        (w)=>`My sport is ${w}.`
+      ],
+      minPerSkill
+    });
+
+    packs.food = buildTopicPackFromVocab({
+      title:"Food",
+      vocab: foodVocab,
+      sentenceTemplates:[
+        (w)=>`I like ${w}.`,
+        (w)=>`Do you want ${w}?`,
+        (w)=>`My favorite food is ${w}.`
+      ],
+      minPerSkill
+    });
+
+    packs.can = buildCanPack({ minPerSkill });
+    packs.numbers100 = buildNumbersDigitsPack({ title:"Numbers 1–100", from:1, to:100, minPerSkill });
+    packs.peopleadj = buildTopicPackFromVocab({
+      title:"Adjectives (People)",
+      vocab: peopleAdjVocab,
+      sentenceTemplates:[
+        (w)=>`He is ${w}.`,
+        (w)=>`She is ${w}.`,
+        (w)=>`They are ${w}.`
+      ],
+      minPerSkill
+    });
+  }
+
+  // Grade 3+ topics
+  if (["3°","4°","5°"].includes(grade)){
+    packs.illness = buildIllnessPack({ minPerSkill });
+    packs.should = buildShouldPack({ minPerSkill });
+
+    packs.months = buildTopicPackFromVocab({
+      title:"Months",
+      vocab: monthsVocab,
+      sentenceTemplates:[
+        (w)=>`Month: ${w}.`,
+        (w)=>`My birthday is in ${w}.`,
+        (w)=>`I like ${w}.`
+      ],
+      minPerSkill
+    });
+
+    packs.days = buildTopicPackFromVocab({
+      title:"Days of the Week",
+      vocab: daysVocab,
+      sentenceTemplates:[
+        (w)=>`Today is ${w}.`,
+        (w)=>`On ${w}, I study.`,
+        (w)=>`${w} is a day.`
+      ],
+      minPerSkill
+    });
+
+    packs.oclock = buildOclockPack({ minPerSkill });
+    packs.subjects = buildSchoolSubjectsPack({ minPerSkill });
+  }
+
+  // Grade 4+ topics
+  if (["4°","5°"].includes(grade)){
+    packs.pronouns = buildPronounsPack({ minPerSkill });
+    packs.presentsimple = buildPresentSimplePack({ minPerSkill });
+    packs.comparisons = buildComparisonsPack({ minPerSkill });
+    packs.freqadv = buildFrequencyAdverbsPack({ minPerSkill });
+    packs.apologies = buildApologiesPack({ minPerSkill });
+    packs.environment = buildEnvironmentPack({ minPerSkill });
+  }
+
+  // Grade 5+ topics
+  if (["5°"].includes(grade)){
+    packs.time = buildTimePackAdvanced({ minPerSkill });
+    packs.routines = buildDailyRoutinesHobbiesPack({ minPerSkill });
+    packs.synant = buildSynAntPack({ minPerSkill });
+    packs.comp_super = buildComparativesSuperlativesPack({ minPerSkill });
+    packs.city = buildCityPartsPack({ minPerSkill });
+  }
+
+  // Pre-K specific number (keep)
+  if (grade === "Pre-K"){
+    packs.numbers = buildNumbersDigitsPack({ title:"Numbers 1–10", from:1, to:10, minPerSkill });
+  }
+
+  return packs;
+}
+
+const activities = {};
+grades.forEach(g => activities[g] = buildActivitiesForGrade(g));
+
+/* =========================================================
+   5) Tests (evaluative per grade)
+   - 12 questions for Pre-K/1/2
+   - 15 questions for 3
+   - 20 questions for 4/5
+========================================================= */
+function makeTestForGrade(grade){
+  const topicKeys = (topicsByGrade[grade] || []).map(t => t.key);
+  const nQuestions = (grade === "3°") ? 15 : (["4°","5°"].includes(grade) ? 20 : 12);
+
+  // Prefer key grammar topics when available
+  const preferredOrder = [
+    "greetings","colors","numbers","animals","family","classobjects","schoolparts","thereisare",
+    "sports","food","can","numbers100","peopleadj",
+    "illness","should","months","days","oclock","subjects",
+    "pronouns","presentsimple","comparisons","freqadv","apologies","environment",
+    "time","routines","synant","comp_super","city"
+  ].filter(k => topicKeys.includes(k));
+
+  const pickTopics = [];
+  for (let i = 0; i < nQuestions; i++){
+    pickTopics.push(preferredOrder[i % preferredOrder.length] || topicKeys[i % topicKeys.length]);
+  }
+
+  // Build questions by sampling from reading/listening mostly (easy to grade)
+  const questions = [];
+  for (let i = 0; i < nQuestions; i++){
+    const tKey = pickTopics[i];
+    const pack = activities[grade]?.[tKey];
+    if (!pack) continue;
+
+    // Alternate types for variety
+    const typePick = (i % 3);
+    if (typePick === 0 && pack.listening?.length){
+      const base = pack.listening[i % pack.listening.length];
+      questions.push({...base, testTopic: tKey});
+    } else if (typePick === 1 && pack.reading?.length){
+      const base = pack.reading[i % pack.reading.length];
+      questions.push({...base, testTopic: tKey});
+    } else if (pack.writing?.length){
+      const base = pack.writing[i % pack.writing.length];
+      // Only include gradable writing types (fill/unscramble)
+      if (base.type === "fill" || base.type === "unscramble"){
+        questions.push({...base, testTopic: tKey});
+      } else {
+        const fallback = pack.reading[i % pack.reading.length];
+        questions.push({...fallback, testTopic: tKey});
+      }
+    }
+  }
+
+  // Ensure exact length (trim/pad by repeating)
+  while (questions.length < nQuestions) questions.push(questions[questions.length % Math.max(1, questions.length)] || null);
+  return questions.slice(0, nQuestions).filter(Boolean);
+}
+
+/* =========================================================
+   6) UI state
+========================================================= */
+let selectedGrade = null;
+let selectedTopic = null;
+let selectedSkill = "listening";
+let activityIndex = 0;
+
+let inTestMode = false;
+let testQuestions = [];
+let testIndex = 0;
+let testScore = 0;
+let testAnswers = []; // {ok, correct, pick}
+
+/* =========================================================
+   7) UI elements
+========================================================= */
+const gradeRow = document.getElementById("gradeRow");
+const topicRow = document.getElementById("topicRow");
+const topicHelp = document.getElementById("topicHelp");
+const skillsGrid = document.getElementById("skillsGrid");
+const activityArea = document.getElementById("activityArea");
+const status = document.getElementById("status");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const testBtn = document.getElementById("testBtn");
+const exitTestBtn = document.getElementById("exitTestBtn");
+const panelTitle = document.getElementById("panelTitle");
+
+/* =========================================================
+   8) Build grade pills
+========================================================= */
+grades.forEach(g => {
+  const pill = document.createElement("div");
+  pill.className = "pill";
+  pill.innerHTML = `<span style="font-weight:900;">${g}</span>`;
+  pill.onclick = () => {
+    selectedGrade = g;
+    selectedSkill = "listening";
+    activityIndex = 0;
+    inTestMode = false;
+
+    [...gradeRow.children].forEach(x => x.classList.remove("active"));
+    pill.classList.add("active");
+
+    const topics = topicsByGrade[g] || [];
+    selectedTopic = topics.length ? topics[0].key : null;
+
+    renderTopics();
+    updateStatus();
+    renderActivity();
+    updateTestButtons();
+  };
+  gradeRow.appendChild(pill);
+});
+
+/* =========================================================
+   9) Build skills
+========================================================= */
+skills.forEach(s => {
+  const card = document.createElement("div");
+  card.className = "card";
+  const btn = document.createElement("button");
+  btn.className = "soft";
+  btn.textContent = s.label;
+  btn.onclick = () => {
+    if (inTestMode) return; // lock during test
+    selectedSkill = s.key;
+    activityIndex = 0;
+    updateStatus();
+    renderActivity();
+  };
+  card.appendChild(btn);
+  skillsGrid.appendChild(card);
+});
+
+/* =========================================================
+   10) Navigation
+========================================================= */
+prevBtn.onclick = () => {
+  if (!selectedGrade) return;
+  if (inTestMode){
+    testIndex = Math.max(0, testIndex - 1);
+    renderTest();
+  } else {
+    activityIndex = Math.max(0, activityIndex - 1);
+    renderActivity();
+  }
+};
+
+nextBtn.onclick = () => {
+  if (!selectedGrade) return;
+  if (inTestMode){
+    testIndex = Math.min(testQuestions.length - 1, testIndex + 1);
+    renderTest();
+  } else {
+    activityIndex = activityIndex + 1;
+    renderActivity();
+  }
+};
+
+/* =========================================================
+   11) Topics render
+========================================================= */
+function renderTopics(){
+  topicRow.innerHTML = "";
+  if (!selectedGrade){
+    topicHelp.textContent = "Select a grade to see topics.";
+    return;
+  }
+  const topics = topicsByGrade[selectedGrade] || [];
+  topicHelp.textContent = `Minimum activities per skill: ${minPerSkillByGrade[selectedGrade]} (this grade).`;
+
+  topics.forEach(t => {
+    const p = document.createElement("div");
+    p.className = "pill" + (selectedTopic === t.key ? " active" : "");
+    p.textContent = t.label;
+    p.onclick = () => {
+      if (inTestMode) return;
+      selectedTopic = t.key;
+      activityIndex = 0;
+      renderTopics();
+      updateStatus();
+      renderActivity();
+    };
+    topicRow.appendChild(p);
+  });
+}
+
+/* =========================================================
+   12) Status
+========================================================= */
+function updateStatus(){
+  if (inTestMode){
+    status.textContent = `Grade: ${selectedGrade ?? "—"} | TEST | Q: ${testIndex+1}/${testQuestions.length} | Score: ${testScore}`;
+    return;
+  }
+  status.textContent = `Grade: ${selectedGrade ?? "—"} | Topic: ${selectedTopic ?? "—"} | Skill: ${selectedSkill ?? "—"}`;
+}
+
+/* =========================================================
+   13) Activity retrieval
+========================================================= */
+function getActivityList(){
+  if (!selectedGrade || !selectedTopic) return [];
+  const pack = activities[selectedGrade]?.[selectedTopic];
+  return pack?.[selectedSkill] || [];
+}
+
+/* =========================================================
+   14) Feedback helpers
+========================================================= */
+function setFeedback(html){
+  const fb = document.getElementById("feedback");
+  if (fb) fb.innerHTML = html;
+}
+function checkAnswer(pick, answer){
+  const fb = document.getElementById("feedback");
+  if(!fb) return;
+  if(String(pick) === String(answer)){
+    fb.innerHTML = `<span class="good">✅ Great!</span> You chose: <b>${pick}</b>`;
+  } else {
+    fb.innerHTML = `<span class="bad">❌ Try again</span>. You chose: <b>${pick}</b>`;
+  }
+}
+
+/* =========================================================
+   15) Render activity
+========================================================= */
+function renderActivity(){
+  panelTitle.textContent = "4) Activity";
+  if (!selectedGrade){
+    activityArea.innerHTML = "Pick a grade + topic + skill to start.";
+    return;
+  }
+  if (!selectedTopic){
+    activityArea.innerHTML = "Pick a topic.";
+    return;
+  }
+
+  const list = getActivityList();
+  if (!list.length){
+    activityArea.innerHTML = `<p class="small"><b>No activities</b> for this selection.</p>`;
+    return;
+  }
+
+  if (activityIndex >= list.length) activityIndex = 0;
+  const act = list[activityIndex];
+
+  // mcq-audio
+  if (act.type === "mcq-audio"){
+    activityArea.innerHTML = `
+      <div class="titleLine">
+        <h3 style="margin:0;">${act.title}</h3>
+        <span class="small">${activityIndex+1} / ${list.length}</span>
+      </div>
+      <p>${act.question}</p>
+      <button class="primary" id="playBtn">▶️ Listen</button>
+      <div class="grid" style="margin-top:12px;" id="opts"></div>
+      <p id="feedback"></p>
+    `;
+    document.getElementById("playBtn").onclick = () => speak(act.audioText);
+
+    const opts = document.getElementById("opts");
+    act.options.forEach(opt => {
+      renderOptionButton(opts, {
+        label: opt,
+        sublabel: "Tap to choose",
+        value: opt,
+        topicKey: selectedTopic,
+        onPick: () => checkAnswer(opt, act.answer)
+      });
+    });
+    return;
+  }
+
+  // mcq (reading choose)
+  if (act.type === "mcq"){
+    activityArea.innerHTML = `
+      <div class="titleLine">
+        <h3 style="margin:0;">${act.title}</h3>
+        <span class="small">${activityIndex+1} / ${list.length}</span>
+      </div>
+      <p><b>${act.question}</b></p>
+      <div class="grid" id="opts"></div>
+      <p id="feedback"></p>
+    `;
+    const opts = document.getElementById("opts");
+    act.options.forEach(opt => {
+      renderOptionButton(opts, {
+        label: opt,
+        sublabel: "Tap to choose",
+        value: opt,
+        topicKey: selectedTopic,
+        onPick: () => checkAnswer(opt, act.answer)
+      });
+    });
+    return;
+  }
+
+  // repeat
+  if (act.type === "repeat"){
+    activityArea.innerHTML = `
+      <div class="titleLine">
+        <h3 style="margin:0;">${act.title}</h3>
+        <span class="small">${activityIndex+1} / ${list.length}</span>
+      </div>
+      <p>${act.prompt}</p>
+      <button class="primary" id="sayBtn">🔊 ${act.word}</button>
+      <div class="row" style="margin-top:10px;">
+        <div class="pill">${getIconHTML(act.word, selectedTopic)} <span class="small">Look at the picture and repeat!</span></div>
+      </div>
+    `;
+    document.getElementById("sayBtn").onclick = () => speak(act.word);
+    return;
+  }
+
+  // unscramble
+  if (act.type === "unscramble"){
+    const pool = [...act.pieces];
+    activityArea.innerHTML = `
+      <div class="titleLine">
+        <h3 style="margin:0;">${act.title}</h3>
+        <span class="small">${activityIndex+1} / ${list.length}</span>
+      </div>
+      <div class="row" style="margin-top:6px;">
+        <div class="pill">${getIconHTML(act.hint, selectedTopic)} <b>Hint:</b> ${act.hint}</div>
+      </div>
+      <p style="margin-top:10px;">Click letters to build the word:</p>
+      <div class="row" id="letters"></div>
+      <div class="card" style="margin-top:12px;">
+        <b>Your word:</b> <span id="built"></span>
+      </div>
+      <div class="row" style="margin-top:12px;">
+        <div class="pill" id="clearBtn">🧼 Clear</div>
+        <button class="primary" id="checkBtn" style="flex:1;">✅ Check</button>
+        <button id="hearBtn" style="flex:1;">🔊 Hear</button>
+      </div>
+      <p id="feedback"></p>
+    `;
+
+    const lettersDiv = document.getElementById("letters");
+    const builtSpan = document.getElementById("built");
+    let built = "";
+
+    pool.forEach(ch => {
+      const p = document.createElement("div");
+      p.className = "pill";
+      p.textContent = ch;
+      p.onclick = () => { built += ch; builtSpan.textContent = built; };
+      lettersDiv.appendChild(p);
+    });
+
+    document.getElementById("clearBtn").onclick = () => { built = ""; builtSpan.textContent = ""; setFeedback(""); };
+    document.getElementById("hearBtn").onclick = () => speak(act.answer);
+    document.getElementById("checkBtn").onclick = () => {
+      if (built.toUpperCase() === String(act.answer).toUpperCase()){
+        setFeedback(`<span class="good">✅ Great!</span>`);
+      } else {
+        setFeedback(`<span class="bad">❌ Try again</span>`);
+      }
+    };
+    return;
+  }
+
+  // fill
+  if (act.type === "fill"){
+    activityArea.innerHTML = `
+      <div class="titleLine">
+        <h3 style="margin:0;">${act.title}</h3>
+        <span class="small">${activityIndex+1} / ${list.length}</span>
+      </div>
+      <p><b>${act.sentence}</b></p>
+      <div class="grid" id="opts"></div>
+      <div class="row" style="margin-top:10px;">
+        <button id="hearBtn">🔊 Hear sentence</button>
+      </div>
+      <p id="feedback"></p>
+    `;
+
+    document.getElementById("hearBtn").onclick = () => {
+      const spoken = act.sentence.replace("____", act.answer);
+      speak(spoken);
+    };
+
+    const opts = document.getElementById("opts");
+    act.options.forEach(opt => {
+      renderOptionButton(opts, {
+        label: opt,
+        sublabel: "Tap to fill the blank",
+        value: opt,
+        topicKey: selectedTopic,
+        onPick: () => checkAnswer(opt, act.answer)
+      });
+    });
+    return;
+  }
+
+  activityArea.innerHTML = `<p class="small">Unknown activity type.</p>`;
+}
+
+/* =========================================================
+   16) Test mode
+========================================================= */
+function updateTestButtons(){
+  if (!selectedGrade){
+    testBtn.style.display = "none";
+    exitTestBtn.style.display = "none";
+    return;
+  }
+  testBtn.style.display = inTestMode ? "none" : "inline-flex";
+  exitTestBtn.style.display = inTestMode ? "inline-flex" : "none";
+}
+
+testBtn.onclick = () => {
+  if (!selectedGrade) return;
+  inTestMode = true;
+  testQuestions = makeTestForGrade(selectedGrade);
+  testIndex = 0;
+  testScore = 0;
+  testAnswers = Array(testQuestions.length).fill(null);
+  updateTestButtons();
+  updateStatus();
+  renderTest();
+};
+
+exitTestBtn.onclick = () => {
+  inTestMode = false;
+  updateTestButtons();
+  updateStatus();
+  renderActivity();
+};
+
+function gradeTestPick(pick){
+  const q = testQuestions[testIndex];
+  const correct = String(q.answer);
+  const ok = String(pick) === correct;
+
+  // If first time answering this question, add score; if changing answer, recompute safely
+  const prev = testAnswers[testIndex];
+  if (prev && prev.ok) testScore -= 1;
+  if (ok) testScore += 1;
+
+  testAnswers[testIndex] = { ok, pick: String(pick), correct };
+
+  const fb = document.getElementById("testFeedback");
+  if (fb){
+    fb.innerHTML = ok
+      ? `<span class="good">✅ Correct!</span>`
+      : `<span class="bad">❌ Not yet</span> Correct: <b>${correct}</b>`;
+  }
+  updateStatus();
+}
+
+function renderTest(){
+  panelTitle.textContent = "4) Test";
+  if (!inTestMode){
+    renderActivity();
+    return;
+  }
+  if (!testQuestions.length){
+    activityArea.innerHTML = `<p class="small">No test available.</p>`;
+    return;
+  }
+  const q = testQuestions[testIndex];
+  const answered = testAnswers[testIndex];
+
+  const header = `
+    <div class="testBox">
+      <div class="titleLine">
+        <div>
+          <b>Test — Grade ${selectedGrade}</b>
+          <div class="small">Question ${testIndex+1} / ${testQuestions.length}</div>
+        </div>
+        <div class="small"><b>Score:</b> ${testScore} / ${testQuestions.length}</div>
+      </div>
+      <div class="divider"></div>
+      <div class="small"><b>Topic:</b> ${q.testTopic || "—"}</div>
+    </div>
+  `;
+
+  // Render question by type (gradable)
+  if (q.type === "mcq-audio"){
+    activityArea.innerHTML = `
+      ${header}
+      <p style="margin-top:12px;"><b>${q.question}</b></p>
+      <button class="primary" id="testPlayBtn">▶️ Listen</button>
+      <div class="grid" style="margin-top:12px;" id="testOpts"></div>
+      <p id="testFeedback"></p>
+      ${renderTestSummaryFooter()}
+    `;
+    document.getElementById("testPlayBtn").onclick = () => speak(q.audioText);
+
+    const opts = document.getElementById("testOpts");
+    q.options.forEach(opt => {
+      renderOptionButton(opts, {
+        label: opt,
+        sublabel: answered ? (String(opt) === answered.pick ? "Your answer" : "Tap to change") : "Tap to answer",
+        value: opt,
+        topicKey: q.testTopic || selectedTopic,
+        onPick: () => gradeTestPick(opt)
+      });
+    });
+    if (answered) document.getElementById("testFeedback").innerHTML =
+      answered.ok ? `<span class="good">✅ Correct!</span>` : `<span class="bad">❌ Not yet</span> Correct: <b>${answered.correct}</b>`;
+    return;
+  }
+
+  if (q.type === "mcq"){
+    activityArea.innerHTML = `
+      ${header}
+      <p style="margin-top:12px;"><b>${q.question}</b></p>
+      <div class="grid" id="testOpts"></div>
+      <p id="testFeedback"></p>
+      ${renderTestSummaryFooter()}
+    `;
+    const opts = document.getElementById("testOpts");
+    q.options.forEach(opt => {
+      renderOptionButton(opts, {
+        label: opt,
+        sublabel: answered ? (String(opt) === answered.pick ? "Your answer" : "Tap to change") : "Tap to answer",
+        value: opt,
+        topicKey: q.testTopic || selectedTopic,
+        onPick: () => gradeTestPick(opt)
+      });
+    });
+    if (answered) document.getElementById("testFeedback").innerHTML =
+      answered.ok ? `<span class="good">✅ Correct!</span>` : `<span class="bad">❌ Not yet</span> Correct: <b>${answered.correct}</b>`;
+    return;
+  }
+
+  // fill / unscramble in test: grade by button choices (we’ll present options if fill; if unscramble, grade exact typed build)
+  if (q.type === "fill"){
+    activityArea.innerHTML = `
+      ${header}
+      <p style="margin-top:12px;"><b>${q.sentence}</b></p>
+      <div class="grid" id="testOpts"></div>
+      <p id="testFeedback"></p>
+      ${renderTestSummaryFooter()}
+    `;
+    const opts = document.getElementById("testOpts");
+    q.options.forEach(opt => {
+      renderOptionButton(opts, {
+        label: opt,
+        sublabel: answered ? (String(opt) === answered.pick ? "Your answer" : "Tap to change") : "Tap to answer",
+        value: opt,
+        topicKey: q.testTopic || selectedTopic,
+        onPick: () => gradeTestPick(opt)
+      });
+    });
+    if (answered) document.getElementById("testFeedback").innerHTML =
+      answered.ok ? `<span class="good">✅ Correct!</span>` : `<span class="bad">❌ Not yet</span> Correct: <b>${answered.correct}</b>`;
+    return;
+  }
+
+  if (q.type === "unscramble"){
+    // Simple: show letters to build and then check
+    const pool = [...q.pieces];
+    activityArea.innerHTML = `
+      ${header}
+      <p style="margin-top:12px;"><b>Build the word:</b></p>
+      <div class="row"><div class="pill">${getIconHTML(q.hint, q.testTopic || selectedTopic)} <b>Hint:</b> ${q.hint}</div></div>
+      <div class="row" style="margin-top:10px;" id="tLetters"></div>
+      <div class="card" style="margin-top:12px;">
+        <b>Your word:</b> <span id="tBuilt"></span>
+      </div>
+      <div class="row" style="margin-top:12px;">
+        <div class="pill" id="tClear">🧼 Clear</div>
+        <button class="primary" id="tCheck" style="flex:1;">✅ Check answer</button>
+      </div>
+      <p id="testFeedback"></p>
+      ${renderTestSummaryFooter()}
+    `;
+    const lettersDiv = document.getElementById("tLetters");
+    const builtSpan = document.getElementById("tBuilt");
+    let built = answered ? answered.pick : "";
+
+    builtSpan.textContent = built;
+
+    pool.forEach(ch => {
+      const p = document.createElement("div");
+      p.className = "pill";
+      p.textContent = ch;
+      p.onclick = () => { built += ch; builtSpan.textContent = built; };
+      lettersDiv.appendChild(p);
+    });
+
+    document.getElementById("tClear").onclick = () => { built = ""; builtSpan.textContent = ""; };
+    document.getElementById("tCheck").onclick = () => gradeTestPick(built.toUpperCase());
+    if (answered) document.getElementById("testFeedback").innerHTML =
+      answered.ok ? `<span class="good">✅ Correct!</span>` : `<span class="bad">❌ Not yet</span> Correct: <b>${answered.correct}</b>`;
+    return;
+  }
+
+  activityArea.innerHTML = `${header}<p class="small">Unsupported test question type.</p>${renderTestSummaryFooter()}`;
+}
+
+function renderTestSummaryFooter(){
+  const answeredCount = testAnswers.filter(Boolean).length;
+  const done = answeredCount === testQuestions.length;
+  const percent = testQuestions.length ? Math.round((testScore / testQuestions.length) * 100) : 0;
+
+  return `
+    <div class="divider"></div>
+    <div class="testBox">
+      <div class="row" style="justify-content:space-between;">
+        <div class="small"><b>Answered:</b> ${answeredCount} / ${testQuestions.length}</div>
+        <div class="small"><b>Percent:</b> ${percent}%</div>
+      </div>
+      ${done ? `<div class="small" style="margin-top:6px;"><b>Result:</b> ${percent >= 70 ? "✅ PASS" : "❌ TRY AGAIN"}</div>` : ``}
+      <div class="small" style="margin-top:6px;">Tip: Use ⬅️ Prev / Next ➡️ to move through the test.</div>
+    </div>
+  `;
+}
+
+/* =========================================================
+   17) Init
+========================================================= */
+renderTopics();
+updateStatus();
+updateTestButtons();
+</script>
+</body>
+</html>
+```
